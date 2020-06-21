@@ -1,9 +1,9 @@
 import React from 'react';
 import './App.css';
-import Home from './pages/Home';
-import Rooms from './pages/Rooms';
-import SingleRoom from './pages/SingleRoom';
-import ErrorPage from './pages/ErrorPage';
+import Home from './components/Home';
+import Rooms from './components/Rooms';
+import SingleRoom from './components/SingleRoom';
+import ErrorPage from './components/ErrorPage';
 
 function App() {
   return (
