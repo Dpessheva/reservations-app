@@ -1,6 +1,6 @@
 import React from 'react';
-import Hero from '../components/Hero';
-import Banner from '../components/Banner';
+import Hero from './Hero';
+import Banner from './Banner';
 import { Link } from 'react-router-dom';
 
 function Rooms() {
