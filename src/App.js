@@ -4,7 +4,7 @@ import Home from "./components/Home";
 import Rooms from "./components/Rooms";
 import SingleRoom from "./components/SingleRoom";
 import ErrorPage from "./components/ErrorPage";
-import { Route, Switch, Router } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import Navbar from "./components/NavBar";
 export const App = ()=> {
   return (
