@@ -19,7 +19,7 @@ const Home = () => {
         </Banner>
       </Hero>
       <Services />
-      <FeatureRoom/>
+      <FeatureRoom />
     </>
   );
 };

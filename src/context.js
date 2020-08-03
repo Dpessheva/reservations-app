@@ -7,17 +7,32 @@ class RoomProvider extends Component {
         rooms: [],
         sortedRooms: [],
         featuredRooms: [],
-        loading: true
+        loading: true,
+        type: 'all',
+        capacity: 1,
+        price: 0,
+        minPrice: 0,
+        maxPrice: 0,
+        minSize: 0,
+        maxSize: 0,
+        breakfast: false,
+        pets:false
     };
 
     componentDidMount() {
+        // this.getData
         let rooms = this.formatData(items);
         let featuredRooms = rooms.filter(room => room.featured === true);
+        let maxPrice = Math.max(...rooms.map(item => item.price));
+        let maxSize = Math.max(...rooms.map(item => item.size));
         this.setState({
             rooms,
             sortedRooms: rooms,
             featuredRooms,
-            loading: false
+            loading: false,
+            price: maxPrice,
+            maxPrice: maxPrice,
+            maxSize:maxSize
         })
     }
 
@@ -36,9 +51,22 @@ class RoomProvider extends Component {
         let tempRooms = [...this.state.rooms];
         const room = tempRooms.find((room) => room.slug === slug);
         return room;
+    };
+    handleChange = event => {
+        const type = event.target.type
+        const name = event.target.name
+        const value = event.target.value
+
+    }
+    filterRooms = () => {
+        
     }
     render() {
-        return (<RoomContext.Provider value={{...this.state, getRoom:this.getRoom}}>
+        return (<RoomContext.Provider value={{
+            ...this.state,
+            getRoom: this.getRoom,
+            handleChange:this.handleChange
+        }}>
             {this.props.children}
         </RoomContext.Provider>
         );
@@ -47,5 +75,13 @@ class RoomProvider extends Component {
 
 
 const RoomConsumer = RoomContext.Consumer;
+// Context wiht HOC
+export function withRoomConsumer(Component) {
+    return function ConsumerWrapper(props) {
+        return <RoomConsumer>
+            {value => <Component {...props} context={value} />}
+        </RoomConsumer>
+    }
+}
 
 export {RoomProvider, RoomConsumer, RoomContext}
